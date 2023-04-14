@@ -1,28 +1,81 @@
 import React, { useState } from "react";
+import { createSelector } from "reselect";
+import { useSelector, useDispatch } from "react-redux";
+import Modal from "./Modal";
+import { setCategory } from "../store/category";
 
-const Header = () => {
+const Header: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const selectCategory = createSelector(
+    (state: { category: { category: string } }) => state.category,
+    (categoryState) => categoryState.category
+  );
+
+  const dispatch = useDispatch();
+
+  const category = useSelector(selectCategory);
+
+  const handleCategory = (selectedCategory: string) => {
+    dispatch(setCategory(selectedCategory));
+    console.log(category);
+    setIsModalOpen(true);
+  };
+
+  // const handleOpenModal = () => {
+  //   setIsModalOpen(true);
+  // };
+
+  // const handleCloseModal = () => {
+  //   setIsModalOpen(false);
+  // };
+
   return (
     <>
-      <div className="flex overflow-y-scroll w-screen h-1/5 justify-center items-center ">
-        <div className=" w-4/5">
-          <div className="flex flex-row-reverse bg-gradient-to-r  items-center from-purple-500 via-pink-500 to-red-500 text-white">
-            <h2 className="text-lg font-bold mb-3 mr-8 ">MOTION</h2>
-          </div>
-          <div className="flex flex-row justify-end">
-            <button className="w-24 h-10 text-sm  mr-4 text-gray-400 rounded-lg">
+      <div className=" flex flex-col w-screen justify-center items-center">
+        {/* 모션 그라디언트 */}
+        <div className="flex flex-row-reverse w-4/5 h-24 bg-gradient-to-r  items-center from-red-50 via-red-100 to-indigo-100 text-white">
+          <h1 className="font-dancing text-4xl mb-3 mr-8 ">Motion</h1>
+        </div>
+        {/* 버튼 */}
+        <div className="flex flex-row justify-end bg-transparent">
+          <>
+            <button
+              type="button"
+              className="w-24 h-10 text-sm  mr-4 text-gray-400 rounded-lg"
+              onClick={() => handleCategory("image")}
+            >
               IMAGE
             </button>
-            <button className="w-24 h-10 text-sm  mr-4 text-gray-400 rounded-lg">
+            <button
+              type="button"
+              className="w-24 h-10 text-sm  mr-4 text-gray-400 rounded-lg"
+              onClick={() => handleCategory("video")}
+            >
               VIDEO
             </button>
-            <button className="w-24 h-10 text-sm mr-4 text-gray-400 rounded-lg">
+            <button
+              type="button"
+              className="w-24 h-10 text-sm mr-4 text-gray-400 rounded-lg"
+              onClick={() => handleCategory("note")}
+            >
               NOTE
             </button>
-            <button className="w-24 h-10 text-sm  text-gray-400 rounded-lg">
+            <button
+              type="button"
+              className="w-24 h-10 text-sm  text-gray-400 rounded-lg"
+              onClick={() => handleCategory("task")}
+            >
               TASK
             </button>
-          </div>
+          </>
         </div>
+        {isModalOpen ? (
+          <div>
+            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+          </div>
+        ) : null}
+        <div />
       </div>
     </>
   );
