@@ -1,13 +1,24 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { deletePost } from "../store/content";
+import { createSelector } from "reselect";
+import { deletePost, Post } from "../store/content";
 import ContentList from "./ContentList";
+import DragAndDrop from "./DragAndDrop";
 
 const Document = () => {
+  const selectPosts = createSelector(
+    (state: { content: { posts: Post[] } }) => state.content.posts,
+    (posts) => posts
+  );
+  const posts = useSelector(selectPosts);
+
   return (
     <>
-      <div className="flex flex-col h-60vh justify-center items-center">
-        <ContentList />
+      <div className=" w-screen  flex flex-col justify-center items-center">
+        <div className="w-4/5 h-[500px] justify-center items-center overflow-y-scroll ">
+          <ContentList />
+          {/* <DragAndDrop /> */}
+        </div>
       </div>
     </>
   );

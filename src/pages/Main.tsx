@@ -15,12 +15,14 @@ const Main = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center  h-screen">
-        <div className="h-1/5">
+      <div className="flex flex-col items-center ">
+        <div>
           <Header />
         </div>
-        <div className="w-4/5 {posts.length === 0 ? null : overflow-y-scroll}">
+        <div className="flex items-center justify-center">
           <Document />
+        </div>
+        <div className="flex items-center justify-center">
           <Footer />
         </div>
       </div>

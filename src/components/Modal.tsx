@@ -33,6 +33,12 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
     }
   }, [category]);
 
+  const handleClickOutside = (event: React.MouseEvent<HTMLDivElement>) => {
+    if (event.target === event.currentTarget) {
+      onClose();
+    }
+  };
+
   const selectPost = (state: { content: { posts: Post[] } }) =>
     state.content.posts;
 
@@ -99,7 +105,10 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="fixed top-0 left-0 w-full h-full bg-gray-500 bg-opacity-75 flex items-center justify-center">
+      <div
+        className="modal fixed w-full h-full bg-gray-500 bg-opacity-75 flex items-center justify-center"
+        onClick={handleClickOutside}
+      >
         <div className="bg-white p-8 rounded shadow-md modal">
           <div className="flex flex-row-reverse">
             <button type="button" className="text-gray-400" onClick={onClose}>
@@ -109,7 +118,9 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
 
           {/* 제목 적는 input */}
           <input
-            className="w-80 mb-4 resize-none overflow-x-auto overflow-y-scroll"
+            className="w-80 mb-4 resize-none
+             overflow-x-auto 
+             overflow-y-scroll"
             placeholder="제목"
             onChange={handleTitleChange}
             maxLength={50}
@@ -119,22 +130,13 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
             <>
               {/* 선택한 파일이 있으면 미리보기 이미지 출력 */}
               {imageFile && (
-                <img src={imageFile} alt="미리보기" className="mb-4" />
+                <img src={imageFile} alt="미리보기" className=" mb-4 w-80" />
               )}
               {/* 파일 선택하는 input 창 */}
               <input type="file" onChange={handleFileSelect} />
             </>
           )}
-          {/* {category === "video" && (
-            <>
-              <input
-                id="videoUrl"
-                type="text"
-                placeholder="YouTube video URL"
-                onChange={handleVideoChange}
-              />
-            </>
-          )} */}
+
           {category === "video" && (
             <>
               <label>

@@ -22,19 +22,11 @@ const Header: React.FC = () => {
     setIsModalOpen(true);
   };
 
-  // const handleOpenModal = () => {
-  //   setIsModalOpen(true);
-  // };
-
-  // const handleCloseModal = () => {
-  //   setIsModalOpen(false);
-  // };
-
   return (
     <>
       <div className=" flex flex-col w-screen justify-center items-center">
         {/* 모션 그라디언트 */}
-        <div className="flex flex-row-reverse w-4/5 h-24 bg-gradient-to-r  items-center from-red-50 via-red-100 to-indigo-100 text-white">
+        <div className="flex flex-row-reverse w-4/5 h-24 bg-gradient-to-r items-center from-red-50 via-red-100 to-indigo-100 text-white">
           <h1 className="font-dancing text-4xl mb-3 mr-8 ">Motion</h1>
         </div>
         {/* 버튼 */}

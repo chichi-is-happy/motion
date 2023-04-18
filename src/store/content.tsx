@@ -28,20 +28,17 @@ const contentSlice = createSlice({
         posts: [...state.posts, action.payload],
       };
     },
-    //  addPost: (state, action: PayloadAction<Post>) => {
-    //    state.posts.push(action.payload);
-    //  },
 
     deletePost: (state, action: PayloadAction<number>) => {
       state.posts = state.posts.filter((post) => post.id !== action.payload);
     },
 
-    // setCategory: (state, action: PayloadAction<string>) => {
-    //   state.posts = action.payload;
-    // },
+    postList: (state, action: PayloadAction<Post[]>) => {
+      state.posts = action.payload;
+    },
   },
 });
 
-export const { addPost, deletePost } = contentSlice.actions;
+export const { addPost, deletePost, postList } = contentSlice.actions;
 
 export default contentSlice.reducer;
