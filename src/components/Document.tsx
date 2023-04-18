@@ -13,8 +13,12 @@ const Document = () => {
 
   return (
     <>
-      <div className=" w-screen  flex flex-col justify-center items-center">
-        <div className="w-4/5 h-[500px] justify-center items-center overflow-y-scroll ">
+      <div className=" w-screen flex flex-col justify-center items-center">
+        <div
+          className={`w-4/5 h-[500px] justify-center items-center ${
+            posts.length !== 0 && "overflow-y-scroll"
+          }`}
+        >
           <ContentList />
         </div>
       </div>

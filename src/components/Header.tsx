@@ -18,13 +18,13 @@ const Header: React.FC = () => {
 
   const handleCategory = (selectedCategory: string) => {
     dispatch(setCategory(selectedCategory));
-    console.log(category);
+    console.log("Header에서 선택된 category: ", category);
     setIsModalOpen(true);
   };
 
   return (
     <>
-      <div className=" flex flex-col w-screen justify-center items-center">
+      <div className="flex  w-screen flex-col justify-center items-center">
         {/* 모션 그라디언트 */}
         <div className="flex flex-row-reverse w-4/5 h-24 bg-gradient-to-r items-center from-red-50 via-red-100 to-indigo-100 text-white">
           <h1 className="font-dancing text-4xl mb-3 mr-8 ">Motion</h1>

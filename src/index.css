@@ -43,6 +43,28 @@
   opacity: 1;
 }
 
+.checkContainer {
+  width: 25px;
+  height: 25px;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  cursor: pointer;
+}
+.checkContainer:hover {
+  border: 2px solid rgb(255, 223, 222);
+}
+.checkIcon {
+  position: absolute;
+  font-size: 30px;
+  color: rgb(255, 223, 222);
+}
+.completedText {
+  text-decoration: line-through;
+}
+
 @font-face {
   font-family: "Nanum Myeongjo";
   font-style: normal;

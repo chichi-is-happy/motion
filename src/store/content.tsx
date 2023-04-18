@@ -6,7 +6,7 @@ export interface Post {
   content: string;
   imageUrl?: string | null;
   videoUrl?: string | null;
-  category?: "image" | "video" | "note" | "task";
+  category?: string;
   task?: boolean;
 }
 

@@ -7,7 +7,9 @@ import "./App.css";
 const App = () => {
   return (
     <Provider store={store}>
-      <Main />
+      <div className="w-screen">
+        <Main />
+      </div>
     </Provider>
   );
 };

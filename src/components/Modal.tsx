@@ -84,7 +84,9 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
       imageUrl: imageFile,
       videoUrl: videoUrlState,
       task: taskState,
+      category,
     };
+
     console.log("newPost 객체", newPost);
 
     if (imageFile || videoUrlState) {
@@ -133,7 +135,14 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
                 <img src={imageFile} alt="미리보기" className=" mb-4 w-80" />
               )}
               {/* 파일 선택하는 input 창 */}
-              <input type="file" onChange={handleFileSelect} />
+              <label className="inline-block px-3 py-1 bg-red-100 hover:bg-red-200 text-white rounded cursor-pointer">
+                첨부하기
+                <input
+                  type="file"
+                  className="hidden"
+                  onChange={handleFileSelect}
+                />
+              </label>
             </>
           )}
 

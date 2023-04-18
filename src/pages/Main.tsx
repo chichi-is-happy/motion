@@ -15,14 +15,14 @@ const Main = () => {
 
   return (
     <>
-      <div className="flex flex-col items-center ">
+      <div className=" w-screen flex flex-col items-center ">
         <div>
           <Header />
         </div>
-        <div className="flex items-center justify-center">
+        <div className=" w-screen  items-center justify-center ">
           <Document />
         </div>
-        <div className="flex items-center justify-center">
+        <div className=" w-screen  items-center justify-center">
           <Footer />
         </div>
       </div>
