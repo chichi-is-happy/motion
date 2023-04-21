@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { createSelector } from "reselect";
 import { deletePost, Post } from "../store/content";
 import ContentList from "./ContentList";
+// import DragAndDrop from "./DragAndDrop";
 
 const Document = () => {
   const selectPosts = createSelector(
