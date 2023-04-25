@@ -5,6 +5,7 @@ import { deletePost, Post, postList } from "../../store/content";
 import YouTubeIframe from "./YoutubeIframe";
 import CheckBox from "./CheckBox";
 import ConfirmModal from "../Modal/ConfirmModal";
+import { setDeleteModalState } from "../../store/modalState";
 
 interface Props {
   id: number;
@@ -28,7 +29,14 @@ const ContentListItem = ({
   category,
 }: Props) => {
   const [checked, setChecked] = useState<boolean>(false);
-  const [showConfirmModal, setConfirmModal] = useState(false);
+  // const [showConfirmModal, setConfirmModal] = useState(false);
+
+  const deleteModalState = createSelector(
+    (state: { modal: { deleteModal: boolean } }) => state.modal,
+    (modal) => modal.deleteModal
+  );
+
+  const modal = useSelector(deleteModalState);
 
   // 드래그 이벤트를 처리하는 함수
   // 이벤트 객체의 dataTransfer 프로퍼티에 id를 text/plain 형태로 저장
@@ -83,16 +91,13 @@ const ContentListItem = ({
 
   const dispatch = useDispatch();
 
-  const handleDeletePost = () => {
-    setConfirmModal(true);
-  };
-
   const handleConfirm = (postId: number) => {
     dispatch(deletePost(postId));
   };
 
   const handleCancel = () => {
-    setConfirmModal(false);
+    // setConfirmModal(false);
+    dispatch(setDeleteModalState(false));
   };
 
   const posts = useSelector(selectPosts);
@@ -112,11 +117,11 @@ const ContentListItem = ({
             {/* 삭제 버튼 */}
             <div
               className="delete text-gray-300 hover:text-red-200 absolute top-0 left-70 w-7 h-10"
-              onClick={() => setConfirmModal(true)}
+              onClick={() => dispatch(setDeleteModalState(true))}
             >
               X
             </div>
-            {showConfirmModal && (
+            {modal && (
               <ConfirmModal
                 key={id}
                 message="정말로 삭제하시겠습니까?"
@@ -125,6 +130,15 @@ const ContentListItem = ({
                 postId={id}
               />
             )}
+            {/* {showConfirmModal && (
+              <ConfirmModal
+                key={id}
+                message="정말로 삭제하시겠습니까?"
+                onConfirm={handleConfirm}
+                onCancel={handleCancel}
+                postId={id}
+              />
+            )} */}
 
             {/* 이미지 */}
             {category === "image" && (
@@ -155,6 +169,7 @@ const ContentListItem = ({
               <>
                 {/* 체크 박스 컴포넌트 */}
                 <CheckBox
+                  key={id}
                   checked={checked}
                   setChecked={setChecked}
                   // id={post.id}

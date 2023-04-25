@@ -23,19 +23,17 @@ const ContentList = () => {
         )}
         <ul className="w-full">
           {posts.map((post: Post, index: number) => (
-            <>
-              <ContentListItem
-                key={post.id}
-                category={post.category}
-                id={post.id}
-                imageUrl={post.imageUrl}
-                videoUrl={post.videoUrl}
-                task={post.task}
-                title={post.title}
-                content={post.content}
-                index={index}
-              />
-            </>
+            <ContentListItem
+              key={post.id}
+              category={post.category}
+              id={post.id}
+              imageUrl={post.imageUrl}
+              videoUrl={post.videoUrl}
+              task={post.task}
+              title={post.title}
+              content={post.content}
+              index={index}
+            />
           ))}
         </ul>
       </div>

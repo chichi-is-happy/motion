@@ -8,15 +8,7 @@ import { setModalState } from "../../store/modalState";
 import YouTubeIframe from "../MainPage/YoutubeIframe";
 import { useClickOutside } from "../../hooks/handleClickOutside";
 
-type ModalProps = {
-  // isOpen: boolean;
-  // onClose: () => void;
-  children?: React.ReactNode;
-};
-
-// const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
-// const Modal: React.FC<ModalProps> = ({ isOpen, children }) => {
-const Modal: React.FC<ModalProps> = ({ children }) => {
+const Modal = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [imageFile, setImageFile] = useState("");
@@ -45,12 +37,6 @@ const Modal: React.FC<ModalProps> = ({ children }) => {
       setTaskState(true);
     }
   }, [category]);
-
-  // const handleClickOutside = (event: React.MouseEvent<HTMLDivElement>) => {
-  //   if (event.target === event.currentTarget) {
-  //     onClose();
-  //   }
-  // };
 
   const selectPost = (state: { content: { posts: Post[] } }) =>
     state.content.posts;

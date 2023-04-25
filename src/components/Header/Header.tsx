@@ -81,10 +81,7 @@ const Header: React.FC = () => {
         ) : null} */}
         {modal ? (
           <div>
-            <Modal
-            // isOpen={isModalOpen}
-            //  onClose={() => setIsModalOpen(false)}
-            />
+            <Modal />
           </div>
         ) : null}
         <div />
