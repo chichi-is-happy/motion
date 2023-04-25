@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
-import { Post } from "../store/content";
+import { Post } from "../../store/content";
 import ContentListItem from "./ContentListItem";
 
 const ContentList = () => {

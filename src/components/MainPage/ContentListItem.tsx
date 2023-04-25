@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createSelector } from "reselect";
-import { deletePost, Post, postList } from "../store/content";
+import { deletePost, Post, postList } from "../../store/content";
 import YouTubeIframe from "./YoutubeIframe";
 import CheckBox from "./CheckBox";
+import ConfirmModal from "../Modal/ConfirmModal";
 
 interface Props {
   id: number;
@@ -27,6 +28,7 @@ const ContentListItem = ({
   category,
 }: Props) => {
   const [checked, setChecked] = useState<boolean>(false);
+  const [showConfirmModal, setConfirmModal] = useState(false);
 
   // 드래그 이벤트를 처리하는 함수
   // 이벤트 객체의 dataTransfer 프로퍼티에 id를 text/plain 형태로 저장
@@ -81,8 +83,16 @@ const ContentListItem = ({
 
   const dispatch = useDispatch();
 
-  const handleDeletePost = (postId: number) => {
+  const handleDeletePost = () => {
+    setConfirmModal(true);
+  };
+
+  const handleConfirm = (postId: number) => {
     dispatch(deletePost(postId));
+  };
+
+  const handleCancel = () => {
+    setConfirmModal(false);
   };
 
   const posts = useSelector(selectPosts);
@@ -90,9 +100,9 @@ const ContentListItem = ({
 
   return (
     <>
-      <li key={id} className="flex-grow">
+      <li className="flex-grow relative">
         <div
-          className="flex post p-5 m-3 border rounded-lg relative"
+          className="flex post p-5 m-3 border hover:border-red-200 rounded-lg relative"
           draggable
           onDragStart={(event) => onDragStart(event, id.toString())}
           onDragOver={(event) => onDragOver(event)}
@@ -101,11 +111,21 @@ const ContentListItem = ({
           <div className="flex flex-row">
             {/* 삭제 버튼 */}
             <div
-              className="delete text-gray-300  absolute top-0 left-70 w-7 h-10"
-              onClick={() => handleDeletePost(id)}
+              className="delete text-gray-300 hover:text-red-200 absolute top-0 left-70 w-7 h-10"
+              onClick={() => setConfirmModal(true)}
             >
               X
             </div>
+            {showConfirmModal && (
+              <ConfirmModal
+                key={id}
+                message="정말로 삭제하시겠습니까?"
+                onConfirm={handleConfirm}
+                onCancel={handleCancel}
+                postId={id}
+              />
+            )}
+
             {/* 이미지 */}
             {category === "image" && (
               <>

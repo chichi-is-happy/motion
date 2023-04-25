@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { Post } from "../store/content";
-import Header from "../components/Header";
-import Document from "../components/Document";
-import Footer from "../components/Footer";
+import Header from "../components/Header/Header";
+import Document from "../components/MainPage/Document";
+import Footer from "../components/Footer/Footer";
 
 const Main = () => {
   const selectPosts = createSelector(

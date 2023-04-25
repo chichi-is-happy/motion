@@ -12,7 +12,7 @@ module.exports = {
       "5xl": "3.052rem",
     },
     fontFamily: {
-      dancing: ["Dancing Script"],
+      dancing: ["Lobster", "Dancing Script", "cursive"],
     },
     extend: {},
   },

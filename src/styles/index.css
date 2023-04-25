@@ -6,7 +6,7 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-@import url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Dancing+Script");
 
 .max-w-sm {
   @apply rounded overflow-hidden shadow-lg;
@@ -20,13 +20,13 @@
   background-color: #fff;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   overflow: auto;
-  z-index: 10;
-  position: absolute;
+  z-index: 20;
+  /* position: absolute; */
 }
 
 .post {
-  display: flex;
-  z-index: 0;
+  /* display: flex; */
+  /* z-index: 0; */
   display: block !important;
 }
 
@@ -78,7 +78,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap");
+  src: url("https://fonts.googleapis.com/css?family=Dancing+Script");
 }
 
 @layer base {

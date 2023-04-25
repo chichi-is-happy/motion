@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { createSelector } from "reselect";
 import { useSelector, useDispatch } from "react-redux";
-import Modal from "./Modal";
-import { setCategory } from "../store/category";
+import Modal from "../Modal/Modal";
+import { setCategory } from "../../store/category";
+import { setModalState } from "../../store/modalState";
 
 const Header: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  // const [isModalOpen, setIsModalOpen] = useState(false);
 
   const selectCategory = createSelector(
     (state: { category: { category: string } }) => state.category,
@@ -16,10 +17,18 @@ const Header: React.FC = () => {
 
   const category = useSelector(selectCategory);
 
+  const modalState = createSelector(
+    (state: { modal: { modal: boolean } }) => state.modal,
+    (isModalOpen) => isModalOpen.modal
+  );
+
+  const modal = useSelector(modalState);
+
   const handleCategory = (selectedCategory: string) => {
     dispatch(setCategory(selectedCategory));
     console.log("Header에서 선택된 category: ", category);
-    setIsModalOpen(true);
+    // setIsModalOpen(true);
+    dispatch(setModalState(true));
   };
 
   return (
@@ -62,9 +71,20 @@ const Header: React.FC = () => {
             </button>
           </>
         </div>
-        {isModalOpen ? (
+        {/* {isModalOpen ? (
           <div>
-            <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+            <Modal
+              isOpen={isModalOpen}
+              //  onClose={() => setIsModalOpen(false)}
+            />
+          </div>
+        ) : null} */}
+        {modal ? (
+          <div>
+            <Modal
+            // isOpen={isModalOpen}
+            //  onClose={() => setIsModalOpen(false)}
+            />
           </div>
         ) : null}
         <div />

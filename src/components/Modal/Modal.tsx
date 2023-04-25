@@ -1,23 +1,29 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { createSelector } from "reselect";
-import { addPost, deletePost, Post } from "../store/content";
-import { setPreviewImage, setImage } from "../store/file";
-import { setCategory } from "../store/category";
-import YouTubeIframe from "./YoutubeIframe";
+import { addPost, deletePost, Post } from "../../store/content";
+import { setPreviewImage, setImage } from "../../store/file";
+import { setCategory } from "../../store/category";
+import { setModalState } from "../../store/modalState";
+import YouTubeIframe from "../MainPage/YoutubeIframe";
+import { useClickOutside } from "../../hooks/handleClickOutside";
 
 type ModalProps = {
-  isOpen: boolean;
-  onClose: () => void;
+  // isOpen: boolean;
+  // onClose: () => void;
   children?: React.ReactNode;
 };
 
-const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+// const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
+// const Modal: React.FC<ModalProps> = ({ isOpen, children }) => {
+const Modal: React.FC<ModalProps> = ({ children }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [imageFile, setImageFile] = useState("");
   const [videoUrlState, setVideoUrlState] = useState("");
   const [taskState, setTaskState] = useState(false);
+
+  const { handleClickOutside, onClose } = useClickOutside();
 
   const dispatch = useDispatch();
 
@@ -27,17 +33,24 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
   );
   const category = useSelector(selectCategory);
 
+  const modalState = createSelector(
+    (state: { modal: { modal: boolean } }) => state.modal,
+    (isModalOpen) => isModalOpen.modal
+  );
+
+  const modal = useSelector(modalState);
+
   useEffect(() => {
     if (category === "task") {
       setTaskState(true);
     }
   }, [category]);
 
-  const handleClickOutside = (event: React.MouseEvent<HTMLDivElement>) => {
-    if (event.target === event.currentTarget) {
-      onClose();
-    }
-  };
+  // const handleClickOutside = (event: React.MouseEvent<HTMLDivElement>) => {
+  //   if (event.target === event.currentTarget) {
+  //     onClose();
+  //   }
+  // };
 
   const selectPost = (state: { content: { posts: Post[] } }) =>
     state.content.posts;
@@ -46,7 +59,9 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
   const posts = useSelector(selectPost);
   console.log("셀렉터포스트", posts);
 
-  if (!isOpen) return null;
+  // 모달이 열려있지 않다면 null을 리턴
+  // if (!isOpen) return null;
+  if (!modal) return null;
 
   // 아래로 e.target.value를 쓰고, setState로 변경하고 있음. Input엘레멘탈과 TextArea를 쓰는 차이, 수정하기
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -113,7 +128,11 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
       >
         <div className="bg-white p-8 rounded shadow-md modal">
           <div className="flex flex-row-reverse">
-            <button type="button" className="text-gray-400" onClick={onClose}>
+            <button
+              type="button"
+              className="text-gray-400 hover:text-red-200"
+              onClick={onClose}
+            >
               X
             </button>
           </div>
@@ -139,6 +158,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
                 첨부하기
                 <input
                   type="file"
+                  accept="image/*"
                   className="hidden"
                   onChange={handleFileSelect}
                 />
@@ -169,7 +189,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children }) => {
           />
           <br />
           <div className="flex flex-row-reverse">
-            <button type="submit" className="text-gray-400">
+            <button type="submit" className="text-gray-400 hover:text-red-200">
               등록
             </button>
           </div>
