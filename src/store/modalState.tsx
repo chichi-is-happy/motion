@@ -2,14 +2,18 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface ModalState {
   modal: boolean;
-  deleteModal: boolean;
+  deleteModal: {
+    showModal: boolean;
+    postId?: number;
+  };
 }
 
 const initialState: ModalState = {
   modal: false,
-  deleteModal: false,
+  deleteModal: {
+    showModal: false,
+  },
 };
-
 const modalStateSlice = createSlice({
   name: "modal",
   initialState,
@@ -17,8 +21,12 @@ const modalStateSlice = createSlice({
     setModalState: (state, action: PayloadAction<boolean>) => {
       state.modal = action.payload;
     },
-    setDeleteModalState: (state, action: PayloadAction<boolean>) => {
-      state.deleteModal = action.payload;
+    setDeleteModalState: (
+      state,
+      action: PayloadAction<{ showModal: boolean; postId?: number }>
+    ) => {
+      const { showModal, postId } = action.payload;
+      state.deleteModal = { showModal, postId };
     },
   },
 });

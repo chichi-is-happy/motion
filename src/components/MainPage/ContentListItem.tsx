@@ -5,7 +5,7 @@ import { deletePost, Post } from "../../store/content";
 import YouTubeIframe from "./YoutubeIframe";
 import CheckBox from "./CheckBox";
 import ConfirmModal from "../Modal/ConfirmModal";
-import { setDeleteModalState } from "../../store/modalState";
+import { ModalState, setDeleteModalState } from "../../store/modalState";
 import { handleDrag } from "../../hooks/handleDrag";
 
 interface Props {
@@ -45,12 +45,13 @@ const ContentListItem = ({
   });
 
   const [checked, setChecked] = useState<boolean>(false);
-  const deleteModalState = createSelector(
-    (state: { modal: { deleteModal: boolean } }) => state.modal,
-    (modal) => modal.deleteModal
-  );
 
-  const modal = useSelector(deleteModalState);
+  const showDeleteModal = useSelector(
+    (state: { modal: ModalState }) => state.modal.deleteModal.showModal
+  );
+  const deleteId = useSelector(
+    (state: { modal: ModalState }) => state.modal.deleteModal.postId
+  );
 
   useEffect(() => {
     console.log("category: ", category);
@@ -61,7 +62,7 @@ const ContentListItem = ({
   };
 
   const handleCancel = () => {
-    dispatch(setDeleteModalState(false));
+    dispatch(setDeleteModalState({ showModal: false }));
   };
 
   return (
@@ -78,11 +79,14 @@ const ContentListItem = ({
             {/* 삭제 버튼 */}
             <div
               className="delete text-gray-300 hover:text-red-200 absolute top-0 left-70 w-7 h-10"
-              onClick={() => dispatch(setDeleteModalState(true))}
+              onClick={() =>
+                dispatch(setDeleteModalState({ showModal: true, postId: id }))
+              }
             >
               X
             </div>
-            {modal && (
+
+            {showDeleteModal && deleteId === id && (
               <ConfirmModal
                 key={id}
                 message="정말로 삭제하시겠습니까?"
