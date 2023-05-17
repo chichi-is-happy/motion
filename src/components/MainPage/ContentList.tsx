@@ -1,10 +1,11 @@
 import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
+import { useState } from "react";
 import { Post } from "../../store/content";
 import ContentListItem from "./ContentListItem";
 
 const ContentList = () => {
-  //
+  const [dragEnteredId, setDragEnteredId] = useState<number | null>(null);
   const selectPosts = createSelector(
     (state: { content: { posts: Post[] } }) => state.content.posts,
     (posts) => posts
@@ -33,6 +34,8 @@ const ContentList = () => {
               title={post.title}
               content={post.content}
               index={index}
+              dragEnteredId={dragEnteredId}
+              setDragEnteredId={setDragEnteredId}
             />
           ))}
         </ul>

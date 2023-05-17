@@ -1,7 +1,20 @@
 import { postList } from "../store/content";
 import { DragPropsType } from "../types/contentsType";
 
-export const handleDrag = ({ posts, dispatch }: DragPropsType) => {
+interface Props extends DragPropsType {
+  setDragEnteredId: React.Dispatch<React.SetStateAction<number | null>>;
+}
+
+export const useDrag = ({ posts, dispatch, setDragEnteredId }: Props) => {
+  // onDragEnter : 마우스가 컨텐츠 위로 들어갈 때 dragId 값을 업데이트
+  const onDragEnter = (
+    event: React.DragEvent<HTMLDivElement>,
+    enteredId: number
+  ) => {
+    event.preventDefault();
+    setDragEnteredId(enteredId);
+  };
+
   // onDragStart : 드래그 이벤트를 처리하는 함수
   // 이벤트 객체의 dataTransfer 프로퍼티에 id를 text/plain 형태로 저장
   // 이렇게 하면 드래그된 아이템을 드랍할 때 id를 전달할 수 있다
@@ -41,11 +54,13 @@ export const handleDrag = ({ posts, dispatch }: DragPropsType) => {
       newItems.splice(dropIndex, 0, item);
       dispatch(postList(newItems));
     }
+    setDragEnteredId(null);
   };
 
   return {
     onDragStart,
     onDragOver,
     onDrop,
+    onDragEnter,
   };
 };

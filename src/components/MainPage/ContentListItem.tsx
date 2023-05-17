@@ -6,7 +6,7 @@ import YouTubeIframe from "./YoutubeIframe";
 import CheckBox from "./CheckBox";
 import ConfirmModal from "../Modal/ConfirmModal";
 import { ModalState, setDeleteModalState } from "../../store/modalState";
-import { handleDrag } from "../../hooks/handleDrag";
+import { useDrag } from "../../hooks/useDrag";
 
 interface Props {
   id: number;
@@ -17,6 +17,8 @@ interface Props {
   content: string;
   index?: number | undefined;
   category?: string;
+  dragEnteredId: number | null;
+  setDragEnteredId: React.Dispatch<React.SetStateAction<number | null>>;
 }
 
 const ContentListItem = ({
@@ -28,6 +30,8 @@ const ContentListItem = ({
   content,
   index,
   category,
+  dragEnteredId,
+  setDragEnteredId,
 }: Props) => {
   const selectPosts = createSelector(
     (state: { content: { posts: Post[] } }) => state.content.posts,
@@ -39,9 +43,10 @@ const ContentListItem = ({
 
   const dispatch = useDispatch();
 
-  const { onDragStart, onDragOver, onDrop } = handleDrag({
+  const { onDragStart, onDragOver, onDrop, onDragEnter } = useDrag({
     posts,
     dispatch,
+    setDragEnteredId,
   });
 
   const [checked, setChecked] = useState<boolean>(false);
@@ -69,11 +74,18 @@ const ContentListItem = ({
     <>
       <li className="flex-grow relative">
         <div
-          className="flex post p-5 m-3 border hover:border-red-200 rounded-lg relative"
           draggable
-          onDragStart={(event) => onDragStart(event, id.toString())}
+          onDragStart={(event) => {
+            onDragStart(event, id.toString());
+          }}
+          onDragEnter={(event) => onDragEnter(event, id)}
           onDragOver={(event) => onDragOver(event)}
-          onDrop={(event) => onDrop(event, index)} // index 값으로 수정
+          onDrop={(event) => {
+            onDrop(event, index);
+          }}
+          className={`flex post p-5 m-3 border hover:border-red-200 rounded-lg relative ${
+            dragEnteredId === id ? "bg-red-200" : ""
+          }`}
         >
           <div className="flex flex-row">
             {/* 삭제 버튼 */}
@@ -85,7 +97,6 @@ const ContentListItem = ({
             >
               X
             </div>
-
             {showDeleteModal && deleteId === id && (
               <ConfirmModal
                 key={id}
@@ -95,7 +106,6 @@ const ContentListItem = ({
                 postId={id}
               />
             )}
-
             {/* 이미지 */}
             {category === "image" && (
               <>
@@ -108,7 +118,6 @@ const ContentListItem = ({
                 ) : null}
               </>
             )}
-
             {/* 비디오 */}
             {category === "video" && (
               <>
@@ -119,25 +128,15 @@ const ContentListItem = ({
                 ) : null}
               </>
             )}
-
             {/* TO DO */}
             {category === "task" && (
               <>
                 {/* 체크 박스 컴포넌트 */}
-                <CheckBox
-                  key={id}
-                  checked={checked}
-                  setChecked={setChecked}
-                  // id={post.id}
-                  // handleClickCheckBox={() => handleClickCheckBox}
-                  // checked={checked}
-                />
+                <CheckBox key={id} checked={checked} setChecked={setChecked} />
               </>
             )}
-
             {/* 노트 */}
             {category === "note" && <></>}
-
             <div className="flex-col w-full">
               <div className=" w-4/5">
                 {/* 제목 */}

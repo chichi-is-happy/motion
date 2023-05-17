@@ -6,8 +6,6 @@ import { setCategory } from "../../store/category";
 import { setModalState } from "../../store/modalState";
 
 const Header: React.FC = () => {
-  // const [isModalOpen, setIsModalOpen] = useState(false);
-
   const selectCategory = createSelector(
     (state: { category: { category: string } }) => state.category,
     (categoryState) => categoryState.category
@@ -27,7 +25,6 @@ const Header: React.FC = () => {
   const handleCategory = (selectedCategory: string) => {
     dispatch(setCategory(selectedCategory));
     console.log("Header에서 선택된 category: ", category);
-    // setIsModalOpen(true);
     dispatch(setModalState(true));
   };
 
@@ -71,14 +68,6 @@ const Header: React.FC = () => {
             </button>
           </>
         </div>
-        {/* {isModalOpen ? (
-          <div>
-            <Modal
-              isOpen={isModalOpen}
-              //  onClose={() => setIsModalOpen(false)}
-            />
-          </div>
-        ) : null} */}
         {modal ? (
           <div>
             <Modal />
