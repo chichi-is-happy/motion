@@ -14,6 +14,7 @@ const Modal = () => {
   const [imageFile, setImageFile] = useState("");
   const [videoUrlState, setVideoUrlState] = useState("");
   const [taskState, setTaskState] = useState(false);
+  const [invalidLink, setInvalidLink] = useState(false);
 
   const { handleClickOutside, onClose } = useClickOutside();
 
@@ -46,10 +47,8 @@ const Modal = () => {
   console.log("셀렉터포스트", posts);
 
   // 모달이 열려있지 않다면 null을 리턴
-  // if (!isOpen) return null;
   if (!modal) return null;
 
-  // 아래로 e.target.value를 쓰고, setState로 변경하고 있음. Input엘레멘탈과 TextArea를 쓰는 차이, 수정하기
   const handleTitleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value);
     console.log(title);
@@ -62,7 +61,25 @@ const Modal = () => {
     console.log(content);
   };
 
+  const isValidYouTubeLink = (link: string): boolean => {
+    // 유효한 YouTube 도메인 패턴
+    const youtubeDomainPattern = /^(https?:\/\/)?(www\.)?youtube\.com(\/.*)?$/;
+    const shortLinkPattern = /^(https?:\/\/)?(www\.)?youtu\.be(\/.*)?$/;
+
+    // 정규식 패턴을 이용하여 링크를 검증
+    if (youtubeDomainPattern.test(link) || shortLinkPattern.test(link)) {
+      // 도메인 패턴 또는 짧은 링크 패턴에 일치하면 유효한 링크로 판단
+      return true;
+    }
+    return false;
+  };
+
   const handleVideoChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (isValidYouTubeLink(event.target.value)) {
+      setInvalidLink(false);
+      // setVideoUrlState(event.target.value) : 해당 부분을 지워준다
+    } else setInvalidLink(true);
+    // ** 계속 input에 넣는 값을 업데이트 할 수 있게 밖으로 빼낸다
     setVideoUrlState(event.target.value);
   };
 
@@ -103,7 +120,7 @@ const Modal = () => {
     }
     console.log("taskState :", taskState);
     console.log("category :", category);
-    onClose(); // Form을 쓸 땐 handleSubmit안에다가 필요한 것을 다 넣어주면 됨
+    onClose();
   };
 
   return (
@@ -158,9 +175,13 @@ const Modal = () => {
                 <input
                   placeholder="YouTube video URL"
                   type="text"
-                  value={videoUrlState}
                   onChange={handleVideoChange}
                 />
+                {invalidLink ? (
+                  <p className="text-xs text-red-200">
+                    올바르지 않은 링크입니다. 링크를 다시 확인해 주세요.
+                  </p>
+                ) : null}
               </label>
               <YouTubeIframe url={videoUrlState} />
             </>
@@ -175,9 +196,14 @@ const Modal = () => {
           />
           <br />
           <div className="flex flex-row-reverse">
-            <button type="submit" className="text-gray-400 hover:text-red-200">
-              등록
-            </button>
+            {invalidLink === false ? (
+              <button
+                type="submit"
+                className="text-gray-400 hover:text-red-200"
+              >
+                등록
+              </button>
+            ) : null}
           </div>
         </div>
       </div>
