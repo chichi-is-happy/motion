@@ -8,7 +8,7 @@
 <br>
 <br>
 
-## Skills : 개발 환경 및 기술스택
+## 🤍 Skills : 개발 환경 및 기술스택
 - React
 - TypeScript
 - Redux-Toolkit
@@ -18,7 +18,7 @@
 <br>
 <br>
 
-## Directory Structure : 디렉토리 구조
+## 🤍 Directory Structure : 디렉토리 구조
 ```
 └─ src
   ├─ components : 컴포넌트 파일 
@@ -34,7 +34,7 @@
 <br>
 <br>
   
-  ## Key Features : 주요 기능 소개
+  ## 🤍 Key Features : 주요 기능 소개
   ### 게시글 등록
   
   <table cellspacing="0" cellpadding="0">
