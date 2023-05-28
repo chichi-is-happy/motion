@@ -3,7 +3,8 @@
 - [Motion Web](https://motion-zeta.vercel.app/)
 - TypeScript와 Redux-Toolkit을 사용, 드래그 앤 드롭 기능을 구현한 Motion 프로젝트
 
-
+<br>
+<br>
 
 ## Skills : 개발 환경 및 기술스택
 - React
@@ -12,7 +13,8 @@
 - TailwindCSS
 - eslint
 
-
+<br>
+<br>
 
 ## Directory Structure : 디렉토리 구조
 ```
@@ -27,15 +29,14 @@
   └─types : 타입 지정 파일
   ```
   
-  
+<br>
+<br>
   
   ## Key Features : 주요 기능 소개
+  ### 게시글 등록
+  
   <table cellspacing="0" cellpadding="0">
   <tr>
-    <th>게시글 등록</th>
-    <th></th>
-    <th></th>
-  </tr>
   <tr>
     <td>Image 등록</td>
     <td>Video 등록</td>
@@ -58,7 +59,76 @@
     <td colspan="4">이미지 첨부 시 이미지 파일만 첨부할 수 있음</td>
   </tr>
   <tr>
-    <td colspan="4">유튜브 링크 첨부 시 올바른 링크가 아닌 경우 경고 문구를 표시하고, 업로드 불가능 하도록 등록 버튼이 사라짐|</td>
+    <td colspan="4">유튜브 링크 첨부 시 올바른 링크가 아닌 경우 경고 문구를 표시하고, 업로드 불가능 하도록 등록 버튼이 사라짐</td>
   </tr>
 </table>
+
+<br>
+<br>
+
+### 게시글 삭제
+  <table cellspacing="0" cellpadding="0">
+  <tr>
+  <tr>
+    <td><img width="300" alt="게시글 삭제" src="https://github.com/chichi-is-happy/motion/assets/107830853/81d42a98-53c4-4b56-8499-84a147a9ac84"></td>
+  </tr>
+  <tr>
+    <td colspan="4">각 게시글의 오른쪽 상단 x 버튼을 클릭해 삭제할 수 있음 <br>
+클릭 시 삭제 확인 모달 창에서 ‘확인’ 버튼을 누르면 삭제됨 <br>
+모달 창 바깥을 누르거나, ‘취소’ 버튼을 눌러서 모달 창을 닫을 수 있음</td>
+  </tr>
+</table>
+
+<br>
+<br>
+
+### 게시글 순서 이동
+  <table cellspacing="0" cellpadding="0">
+  <tr>
+  <tr>
+    <td><img width="300" alt="게시글 순서 이동" src="https://github.com/chichi-is-happy/motion/assets/107830853/a2401f7a-a7ae-4fa7-9b8a-3370d4af5bb1"></td>
+  </tr>
+  <tr>
+    <td colspan="4">게시글의 순서를 드래그 앤 드롭으로 변경할 수 있음 </td>
+  </tr>
+</table>
+
+<br>
+<br>
+
+### URL 유효성 검사
+  <table cellspacing="0" cellpadding="0">
+  <tr>
+  <tr>
+    <td><img width="300" alt="URL 유효성 검사" src="https://github.com/chichi-is-happy/motion/assets/107830853/6e28d01e-d31d-4c4f-9f15-beb66767f7f7"></td>
+  </tr>
+  <tr>
+    <td colspan="4">이미지 첨부 시 이미지 파일만 첨부할 수 있음 <br>
+유튜브 링크 첨부 시 올바른 링크가 아닌 경우 경고 문구를 표시하고, <br>
+      업로드 불가능 하도록 등록 버튼이 사라짐 </td>
+  </tr>
+</table>
+
+<br>
+<br>
+
+### VIDEO 미리보기
+  <table cellspacing="0" cellpadding="0">
+  <tr>
+  <tr>
+    <td><img width="300" alt="VIDEO 미리보기" src="https://github.com/chichi-is-happy/motion/assets/107830853/c6518427-ceb0-452f-a607-393e8a7bbb27"></td>
+  </tr>
+  <tr>
+    <td colspan="4">VIDEO 게시글 등록 시 모달 창에서 입력한 유튜브 영상 미리보기 가능
+  </tr>
+</table>
+
+<br>
+<br>
+
+
+
+
+
+
 
