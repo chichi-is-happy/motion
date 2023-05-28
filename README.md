@@ -1,5 +1,5 @@
 <div align="center">
-  <img width="800" alt="스크린샷 2023-05-28 오후 7 23 33" src="https://github.com/chichi-is-happy/motion/assets/107830853/553abd77-c158-44e5-8c93-052453c44f2f">
+  <img width="800" alt="motion main" src="https://github.com/chichi-is-happy/motion/assets/107830853/9a7dd01c-f8f6-4ef1-8017-129e98ed6bdb">
   </div>
 
 - [Motion Web](https://motion-zeta.vercel.app/)
@@ -46,10 +46,10 @@
     <td>Todo 등록</td>
   </tr>
   <tr>
-    <td><img width="300" alt="이미지 업로드" src="https://github.com/chichi-is-happy/motion/assets/107830853/97715846-5085-43c9-bc24-cb000c347809"></td>
-    <td><img width="300" alt="비디오 업로드" src="https://github.com/chichi-is-happy/motion/assets/107830853/73230100-7550-44d6-a057-3dc8f82f2000"></td>
-    <td><img width="300" alt="노트 업로드" src="https://github.com/chichi-is-happy/motion/assets/107830853/bdcb0a54-b4a7-4431-bdf1-406f081ba18a"></td>
-    <td><img width="300" alt="TODO 업로드" src="https://github.com/chichi-is-happy/motion/assets/107830853/e5ae3d4d-4e69-4fe8-a685-5b54ad5fb53d"></td>
+    <td><img width="300" alt="이미지 업로드" src="https://github.com/chichi-is-happy/motion/assets/107830853/3c637c30-51d2-43c1-9c14-8aa1fea52b2a"></td>
+    <td><img width="300" alt="비디오 업로드" src="https://github.com/chichi-is-happy/motion/assets/107830853/d94999ce-5a48-4253-8dda-f7b8fe1d8f75"></td>
+    <td><img width="300" alt="노트 업로드" src="https://github.com/chichi-is-happy/motion/assets/107830853/5d74390a-a41d-4706-968c-f4a73577dc81"></td>
+    <td><img width="300" alt="TODO 업로드" src="https://github.com/chichi-is-happy/motion/assets/107830853/36283d19-afed-4b38-a875-ea55fd8c1789"></td>
   </tr>
 </table>
 
@@ -64,7 +64,7 @@
 
 
 ### 게시글 삭제
-|![image](https://github.com/chichi-is-happy/motion/assets/107830853/81d42a98-53c4-4b56-8499-84a147a9ac84)|
+|![image](https://github.com/chichi-is-happy/motion/assets/107830853/d24d00b9-426f-41b6-b028-845cf4a5a0dd)|
 |---|
 * 각 게시글의 오른쪽 상단 x 버튼을 클릭해 삭제할 수 있음  
   클릭 시 삭제 확인 모달 창에서 ‘확인’ 버튼을 누르면 삭제됨  
@@ -74,7 +74,7 @@
 <br>
 
 ### 게시글 순서 이동
-|![image](https://github.com/chichi-is-happy/motion/assets/107830853/a2401f7a-a7ae-4fa7-9b8a-3370d4af5bb1)|
+|![image](https://github.com/chichi-is-happy/motion/assets/107830853/22897a6e-c1ad-42b3-834e-f2693e8f1687)|
 |---|
 * 게시글의 순서를 드래그 앤 드롭으로 변경할 수 있음
 
@@ -82,7 +82,7 @@
 <br>
 
 ### URL 유효성 검사
-|![image](https://github.com/chichi-is-happy/motion/assets/107830853/6e28d01e-d31d-4c4f-9f15-beb66767f7f7)|
+|![image](https://github.com/chichi-is-happy/motion/assets/107830853/473ccfcd-3bfa-4803-a977-058310ff69cb)|
 |---|
 * 이미지 첨부 시 이미지 파일만 첨부할 수 있음
 * 유튜브 링크 첨부 시 올바른 링크가 아닌 경우 경고 문구를 표시하고, 업로드 불가능 하도록 등록 버튼이 사라짐
@@ -91,7 +91,7 @@
 <br>
 
 ### VIDEO 미리보기
-|![image](https://github.com/chichi-is-happy/motion/assets/107830853/c6518427-ceb0-452f-a607-393e8a7bbb27)|
+|![image](https://github.com/chichi-is-happy/motion/assets/107830853/2bdf74e2-5b26-447c-8bf4-45bce1838581)|
 |---|
 * VIDEO 게시글 등록 시 모달 창에서 입력한 유튜브 영상 미리보기 가능
 <br>
